@@ -1,7 +1,14 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { handleInitialData } from '../actions/shared';
+
 import './App.css';
 
 class App extends Component {
+  componentDidMount() {
+    this.props.handleInitialData();
+  }
+
   render() {
     return (
       <React.Fragment>
@@ -11,4 +18,7 @@ class App extends Component {
   }
 }
 
-export default App;
+export default connect(
+  null,
+  { handleInitialData }
+)(App);

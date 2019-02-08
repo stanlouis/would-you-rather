@@ -1,6 +1,6 @@
-import justen from './avatars/justen.jpg';
-import kristy from './avatars/kristy.png';
-import john from './avatars/steve.jpg';
+import justen from '../assets/avatars/justen.jpg'
+import kristy from '../assets/avatars/kristy.png';
+import john from '../assets/avatars/steve.jpg';
 
 let users = {
   sarahedo: {
