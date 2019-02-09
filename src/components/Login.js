@@ -4,6 +4,11 @@ import { connect } from 'react-redux';
 import { setAuthedUser } from '../actions/authedUser';
 
 class Login extends Component {
+
+  handleUserLogin = id => {
+    this.props.setAuthedUser(id);
+  };
+
   render() {
     const { userData } = this.props;
     console.log('props', userData);
@@ -11,13 +16,28 @@ class Login extends Component {
       <div className="container">
         <h1 className="text-center">Login Page</h1>
         <h4 className="text-center">Please login to play Would You Rather</h4>
-        <ul className="list-group">
-          {userData.map(user => (
-            <li key={user.userID} className="list-group-item">
-              {user.userName}
-            </li>
-          ))}
-        </ul>
+        <div className="d-flex">
+          <div className="list-group mx-auto justify-content-center">
+            {userData.map(user => (
+              <button
+                key={user.userID}
+                className="list-group-item list-group-item-action btn"
+                onClick={() => this.handleUserLogin(user.userID)}
+              >
+                <p className="mb-0">
+                  <img
+                    src={user.imageUrl}
+                    alt="user"
+                    className="rounded-circle z-depth-0 mr-3"
+                    height="75"
+                  />
+
+                  {user.userName}
+                </p>
+              </button>
+            ))}
+          </div>
+        </div>
       </div>
     );
   }
