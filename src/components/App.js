@@ -4,9 +4,9 @@ import { handleInitialData } from '../actions/shared';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import './App.css';
-import Login from './Login';
 import LoadingBar from 'react-redux-loading';
 import Dashboard from './Dashboard';
+import PageNotFound from './PageNotFound';
 
 class App extends Component {
   componentDidMount() {
@@ -21,6 +21,7 @@ class App extends Component {
           <LoadingBar />
           <Switch>
             <Route path="/" exact component={Dashboard} />
+            <Route component={PageNotFound} />
           </Switch>
         </React.Fragment>
       </BrowserRouter>
