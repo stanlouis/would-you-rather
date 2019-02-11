@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import Login from './Login';
 import QuestionList from './QuestionList';
+import Nav from './Nav';
 
 class Dashboard extends Component {
   state = {
@@ -27,12 +28,16 @@ class Dashboard extends Component {
     return !authedUser ? (
       <Login />
     ) : (
-      <div className="text-center my-5">
-        <h1>Dashboard</h1>
+      <Fragment>
+      
+        <div className="container">
+        <Nav/>
+        <div className="text-center my-5">
+        <h1 className="Display-1 text-capitalize">Would you rather?</h1>
         <button
           disabled={this.state.unanswered}
           onClick={() => this.setState({ unanswered: true })}
-          className="btn btn-outline-cyan"
+          className="btn btn-default"
         >
           Unanswered
         </button>
@@ -40,7 +45,7 @@ class Dashboard extends Component {
         <button
           disabled={!this.state.unanswered}
           onClick={() => this.setState({ unanswered: false })}
-          className="btn btn-outline-primary"
+          className="btn btn-default"
         >
           answered
         </button>
@@ -54,6 +59,8 @@ class Dashboard extends Component {
           />
         ))}
       </div>
+        </div>
+      </Fragment>
     );
   }
 }

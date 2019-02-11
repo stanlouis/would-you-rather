@@ -13,11 +13,11 @@ class Login extends Component {
     const { userData } = this.props;
     console.log('props', userData);
     return (
-      <div className="container">
+      <div className="container my-5">
         <h1 className="text-center">Login Page</h1>
-        <h4 className="text-center">Please login to play Would You Rather</h4>
+        <h4 className="text-center text-muted mt-3">Please login to play Would You Rather</h4>
         <div className="d-flex">
-          <div className="list-group mx-auto justify-content-center">
+          <div className="list-group mx-auto justify-content-center mt-5">
             {userData.map(user => (
               <button
                 key={user.userID}
