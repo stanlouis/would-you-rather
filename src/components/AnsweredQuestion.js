@@ -7,8 +7,14 @@ const AnsweredQuestion = ({ question, answer, author }) => {
   const optionTwoVotes = question.optionTwo.votes.length;
   const totalVotes = optionOneVotes + optionTwoVotes;
 
-  const percentOfOptionOneVotes = (100 * optionOneVotes) / totalVotes;
-  const percentOfOptionTwoVotes = (100 * optionTwoVotes) / totalVotes;
+  let percentOfOptionOneVotes = (100 * optionOneVotes) / totalVotes;
+  percentOfOptionOneVotes = Number.parseFloat(percentOfOptionOneVotes).toFixed(
+    2
+  );
+  let percentOfOptionTwoVotes = (100 * optionTwoVotes) / totalVotes;
+  percentOfOptionTwoVotes = Number.parseFloat(percentOfOptionTwoVotes).toFixed(
+    2
+  );
 
   return (
     <div className="container my-5">
@@ -81,7 +87,7 @@ const AnsweredQuestion = ({ question, answer, author }) => {
 
 const mapStateToProps = ({ questions, authedUser, users }, ownProps) => {
   const { id } = ownProps;
-  const question = questions[id];
+  const question = questions[id] ? questions[id] : null;
   const authedUserId = authedUser ? authedUser.id : null;
   const author = users[questions[id].author].name;
   const answer = question.optionOne.votes.includes(authedUserId)

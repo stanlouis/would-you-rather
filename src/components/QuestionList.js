@@ -28,7 +28,7 @@ const QuestionList = ({ authedUser, questions, id, users }) => {
                 </h4>
                 <h4>{questions[id].optionTwo.text}</h4>
                 <Link to={`/${id}`} className="btn btn-info rounded">
-                    Choice
+                  View Poll
                 </Link>
               </div>
               {/* <div className="w-50" /> */}

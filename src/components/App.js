@@ -20,18 +20,25 @@ class App extends Component {
       <BrowserRouter>
         <React.Fragment>
           <LoadingBar />
-          <Switch>
-            <Route path="/" exact component={Dashboard} />
-            <Route path="/:id" component={QuestionView} />
-            <Route component={PageNotFound} />
-          </Switch>
+          {this.props.loadingBar === 1 ? null : (
+            <Switch>
+              <Route path="/" exact component={Dashboard} />
+              <Route path="/:id" component={QuestionView} />
+              <Route component={PageNotFound} />
+            </Switch>
+          )}
         </React.Fragment>
       </BrowserRouter>
     );
   }
 }
 
+const mapStateToProps = ({ authedUser, loadingBar }) => {
+  return {
+    loading: loadingBar
+  };
+};
 export default connect(
-  null,
+  mapStateToProps,
   { handleInitialData }
 )(App);
