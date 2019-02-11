@@ -1,27 +1,33 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
 import PageNotFound from './PageNotFound';
 import AnsweredQuestion from './AnsweredQuestion';
 import UnansweredQuestion from './UnansweredQuestion';
 
 class QuestionView extends Component {
   render() {
-    const { question, isAnswered, id } = this.props;
-    return (
-      <Fragment>
-        <h1>Question View</h1>
-        {isAnswered ? <AnsweredQuestion /> : <UnansweredQuestion />}
-      </Fragment>
-    );
+    const { question, isAnswered } = this.props;
+    console.log('question', question);
+    if (question) {
+      return (
+        <Fragment>
+          <h1>Question View</h1>
+          {isAnswered ? (
+            <AnsweredQuestion id={question.id} />
+          ) : (
+            <UnansweredQuestion id={question.id} />
+          )}
+        </Fragment>
+      );
+    }
+    return <PageNotFound />;
   }
 }
 
-const mapStateToProps = ({ questions, authedUser }, props) => {
-  const { id } = props.match.params;
+const mapStateToProps = ({ questions, authedUser }, ownProps) => {
+  const { id } = ownProps.match.params;
   const question = questions[id];
   const authedUserId = authedUser ? authedUser.id : null;
-  console.log('authedUserId', authedUserId);
 
   const isAnswered = question
     ? question.optionOne.votes.includes(authedUserId) ||
@@ -30,7 +36,6 @@ const mapStateToProps = ({ questions, authedUser }, props) => {
 
   return {
     question,
-    id,
     authedUserId,
     isAnswered,
   };
