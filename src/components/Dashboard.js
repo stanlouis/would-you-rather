@@ -20,22 +20,22 @@ class Dashboard extends Component {
     const { unanswered } = this.state;
 
     const questionsIdsToDisplay = unanswered
-      ? answeredQuestionsIds
-      : unansweredQuestionsIds;
+      ? unansweredQuestionsIds
+      : answeredQuestionsIds;
 
     return !authedUser ? (
       <Login />
     ) : (
       <div className="text-center my-5">
         <h1>Dashboard</h1>
-        <button
+        <button disabled={this.state.unanswered}
           onClick={() => this.setState({ unanswered: true })}
           className="btn btn-outline-cyan"
         >
           Unanswered
         </button>
 
-        <button
+        <button disabled={!this.state.unanswered}
           onClick={() => this.setState({ unanswered: false })}
           className="btn btn-outline-primary"
         >

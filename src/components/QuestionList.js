@@ -27,9 +27,9 @@ const QuestionList = ({ authedUser, questions, id, users }) => {
                   <span className="text-slanted">or</span>
                 </h4>
                 <h4>{questions[id].optionTwo.text}</h4>
-                <button type="button" className="btn btn-info rounded">
-                  Choice
-                </button>
+                <Link to={`/${id}`} className="btn btn-info rounded">
+                    Choice
+                </Link>
               </div>
               {/* <div className="w-50" /> */}
             </div>

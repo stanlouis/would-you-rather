@@ -7,6 +7,7 @@ import './App.css';
 import LoadingBar from 'react-redux-loading';
 import Dashboard from './Dashboard';
 import PageNotFound from './PageNotFound';
+import QuestionView from './QuestionView';
 
 class App extends Component {
   componentDidMount() {
@@ -21,6 +22,7 @@ class App extends Component {
           <LoadingBar />
           <Switch>
             <Route path="/" exact component={Dashboard} />
+            <Route path="/:id" component={QuestionView} />
             <Route component={PageNotFound} />
           </Switch>
         </React.Fragment>
