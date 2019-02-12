@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -14,36 +14,46 @@ const Nav = ({ imageUrl, userName, userID, authedUser }) => {
             Dashboard
           </Link>
         </li>
-        <li className="nav-item">
-          <Link to="#!" className="text-uppercase nav-link">
-            Add Question
-          </Link>
-        </li>
-        <li className="nav-item">
-          <Link to="#!" className="text-uppercase nav-link">
-            Leader Board
-          </Link>
-        </li>
-        <li className="nav-item">
-          <Link
-            to="/"
-            className="text-uppercase nav-link"
-            onClick={handleLogout}
-          >
-            Logout
-          </Link>
-        </li>
+
+        {userID ? (
+          <Fragment>
+            <li className="nav-item">
+              <Link to="#!" className="text-uppercase nav-link">
+                Leader Board
+              </Link>
+            </li>
+
+            <li className="nav-item">
+              <Link to="/add" className="text-uppercase nav-link">
+                Add Question
+              </Link>
+            </li>
+          </Fragment>
+        ) : null}
       </ul>
       {userID ? (
-        <div className="avatar text-white">
-          Hello, <span className="text-slanted text-white">{userName}</span>
-          <img
-            src={imageUrl}
-            alt="user"
-            className="rounded-circle z-depth-0 mx-3"
-            height="50"
-          />
-        </div>
+        <Fragment>
+          <div className="avatar text-white">
+            Hello, <span className="text-slanted text-white">{userName}</span>
+            <img
+              src={imageUrl}
+              alt="user"
+              className="rounded-circle z-depth-0 mx-3"
+              height="50"
+            />
+          </div>
+          <ul className="navbar-nav">
+          <li className="nav-item">
+            <Link
+              to="/"
+              className="text-uppercase nav-link"
+              onClick={handleLogout}
+            >
+              Logout
+            </Link>
+          </li>
+          </ul>
+        </Fragment>
       ) : null}
     </nav>
   );
@@ -51,13 +61,19 @@ const Nav = ({ imageUrl, userName, userID, authedUser }) => {
 
 const mapStateToProps = ({ authedUser, users }) => {
   const authedUserId = authedUser ? authedUser.id : null;
-  const user = users[authedUserId];
-  console.log('user is the winner', user);
+  if (authedUserId !== null) {
+    const user = users[authedUserId];
+    return {
+      imageUrl: user.avatarURL,
+      userName: user.name,
+      userID: user.id,
+      authedUser,
+    };
+  }
   return {
-    imageUrl: user.avatarURL,
-    userName: user.name,
-    userID: user.id,
-    authedUser,
+    imageUrl: '',
+    userName: '',
+    userID: '',
   };
 };
 

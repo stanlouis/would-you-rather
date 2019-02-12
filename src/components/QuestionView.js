@@ -11,7 +11,6 @@ class QuestionView extends Component {
     if (question) {
       return (
         <Fragment>
-          <h1>Question View</h1>
           {isAnswered ? (
             <AnsweredQuestion id={question.id} />
           ) : (

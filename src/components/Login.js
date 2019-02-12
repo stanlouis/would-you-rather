@@ -11,7 +11,6 @@ class Login extends Component {
 
   render() {
     const { userData } = this.props;
-    console.log('props', userData);
     return (
       <div className="container my-5">
         <h1 className="text-center">Login Page</h1>

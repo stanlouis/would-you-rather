@@ -8,6 +8,8 @@ import LoadingBar from 'react-redux-loading';
 import Dashboard from './Dashboard';
 import PageNotFound from './PageNotFound';
 import QuestionView from './QuestionView';
+import AddQuestion from './AddQuestion';
+import Nav from './Nav';
 
 class App extends Component {
   componentDidMount() {
@@ -20,10 +22,13 @@ class App extends Component {
       <BrowserRouter>
         <React.Fragment>
           <LoadingBar />
+          <Nav/>
           {this.props.loadingBar === 1 ? null : (
             <Switch>
               <Route path="/" exact component={Dashboard} />
+              <Route path="/add" component={AddQuestion} />
               <Route path="/:id" component={QuestionView} />
+              
               <Route component={PageNotFound} />
             </Switch>
           )}
@@ -35,7 +40,7 @@ class App extends Component {
 
 const mapStateToProps = ({ authedUser, loadingBar }) => {
   return {
-    loading: loadingBar
+    loading: loadingBar,
   };
 };
 export default connect(
