@@ -10,3 +10,5 @@ To get started Clone or download the project:
 
 * install all project dependencies with `npm install`
 * start the development server with `npm start`
+
+[Go to App](https://stan-would-you-rather.netlify.com/)
