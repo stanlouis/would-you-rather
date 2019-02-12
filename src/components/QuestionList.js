@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 const QuestionList = ({ authedUser, questions, id, users }) => {
   const imageUrl = users[questions[id].author].avatarURL;
   const userName = users[questions[id].author].name;
+
   return (
     <Fragment>
       <div className="container my-5">
@@ -21,13 +22,13 @@ const QuestionList = ({ authedUser, questions, id, users }) => {
                   {userName} <br /> Would you rather?
                 </small>
               </div>
-              <div className="card-block px-2 text-left">
+              <div className="card-block text-left p-2">
                 <h4>
                   {questions[id].optionOne.text}{' '}
                   <span className="text-slanted">or</span>
                 </h4>
                 <h4>{questions[id].optionTwo.text}</h4>
-                <Link to={`/${id}`} className="btn btn-default rounded">
+                <Link to={`/questions/${id}`} className="btn btn-default rounded">
                   View Poll
                 </Link>
               </div>

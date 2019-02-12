@@ -62,34 +62,33 @@ class Dashboard extends Component {
   }
 }
 
-let getAnsweredQuestionsIds = function(questions, authedUserId) {
+let getAnsweredQuestionsIds = function(questions, authedUser) {
   return Object.keys(questions)
     .filter(
       id =>
-        questions[id].optionOne.votes.includes(authedUserId) ||
-        questions[id].optionTwo.votes.includes(authedUserId)
+        questions[id].optionOne.votes.includes(authedUser) ||
+        questions[id].optionTwo.votes.includes(authedUser)
     )
     .sort((a, b) => questions[b].timestamp - questions[a].timestamp);
 };
 
-let getUnansweredQuestionsIds = function(questions, authedUserId) {
+let getUnansweredQuestionsIds = function(questions, authedUser) {
   return Object.keys(questions)
     .filter(
       id =>
-        !questions[id].optionOne.votes.includes(authedUserId) &&
-        !questions[id].optionTwo.votes.includes(authedUserId)
+        !questions[id].optionOne.votes.includes(authedUser) &&
+        !questions[id].optionTwo.votes.includes(authedUser)
     )
     .sort((a, b) => questions[b].timestamp - questions[a].timestamp);
 };
 
 const mapStateToProps = ({ authedUser, questions, users }) => {
-  const authedUserId = authedUser ? authedUser.id : null;
 
-  const answeredQuestionsIds = getAnsweredQuestionsIds(questions, authedUserId);
+  const answeredQuestionsIds = getAnsweredQuestionsIds(questions, authedUser);
 
   const unansweredQuestionsIds = getUnansweredQuestionsIds(
     questions,
-    authedUserId
+    authedUser
   );
 
   return {

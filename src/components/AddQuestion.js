@@ -1,12 +1,12 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { handleAddQuestion } from '../actions/questions';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Redirect } from 'react-router-dom';
 
 class AddQuestion extends Component {
   state = {
-    optionOneText: '',
-    optionTwoText: '',
+    optionOneText: 'you would rather edit',
+    optionTwoText: 'you would rather not',
   };
 
   handleChange = e => {
@@ -18,14 +18,16 @@ class AddQuestion extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    const { authedUserId, history, handleAddQuestion } = this.props;
-    console.log('id', authedUserId);
+    const { authedUser, history, handleAddQuestion } = this.props;
+    console.log('id', authedUser);
     const { optionOneText, optionTwoText } = this.state;
-    handleAddQuestion({ optionOneText, optionTwoText, author: authedUserId });
+    handleAddQuestion({ optionOneText, optionTwoText, author: authedUser });
     history.push('/');
   };
 
   render() {
+    const {authedUser} = this.props;
+    if(!authedUser) return <Redirect to="/"/>;
     return (
       <Fragment>
         <h1 className="display-4 text-center mt-5">Add Question</h1>
@@ -90,9 +92,8 @@ class AddQuestion extends Component {
 }
 
 const mapStateToProps = ({ authedUser }) => {
-  const authedUserId = authedUser ? authedUser.id : null;
   return {
-    authedUserId,
+    authedUser,
   };
 };
 export default withRouter(

@@ -5,13 +5,13 @@ import { handleAnswer } from '../actions/questions';
 const UnansweredQuestion = ({
   author,
   question,
-  authedUserId,
+  authedUser,
   handleAnswer,
   id,
 }) => {
   const handleSubmit = option => {
     handleAnswer({
-      authedUser: authedUserId,
+      authedUser,
       qid: id,
       answer: option,
     });
@@ -63,12 +63,11 @@ const UnansweredQuestion = ({
 
 const mapStateToProps = ({ questions, users, authedUser }, { id }) => {
   const question = questions[id];
-  const authedUserId = authedUser ? authedUser.id : null;
   const author = users[questions[id].author].name;
   return {
     question,
     author,
-    authedUserId,
+    authedUser,
   };
 };
 export default connect(

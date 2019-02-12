@@ -1,3 +1,4 @@
+import { showLoading, hideLoading } from 'react-redux-loading';
 import { saveQuestionAnswer, saveQuestion } from '../utils/api';
 
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS';
@@ -37,7 +38,9 @@ export const handleAnswer = answerData => {
 
 export const handleAddQuestion = question => {
   return async dispatch => {
+    dispatch(showLoading());
     const savedQuestion = await saveQuestion(question);
+    dispatch(hideLoading());
     dispatch(addQuestion(savedQuestion));
     // dispatch(addQuestion(question));
 

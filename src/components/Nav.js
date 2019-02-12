@@ -18,7 +18,7 @@ const Nav = ({ imageUrl, userName, userID, authedUser }) => {
         {userID ? (
           <Fragment>
             <li className="nav-item">
-              <Link to="#!" className="text-uppercase nav-link">
+              <Link to="/leaderboard" className="text-uppercase nav-link">
                 Leader Board
               </Link>
             </li>
@@ -43,15 +43,15 @@ const Nav = ({ imageUrl, userName, userID, authedUser }) => {
             />
           </div>
           <ul className="navbar-nav">
-          <li className="nav-item">
-            <Link
-              to="/"
-              className="text-uppercase nav-link"
-              onClick={handleLogout}
-            >
-              Logout
-            </Link>
-          </li>
+            <li className="nav-item">
+              <Link
+                to="/"
+                className="text-uppercase nav-link"
+                onClick={handleLogout}
+              >
+                Logout
+              </Link>
+            </li>
           </ul>
         </Fragment>
       ) : null}
@@ -60,9 +60,8 @@ const Nav = ({ imageUrl, userName, userID, authedUser }) => {
 };
 
 const mapStateToProps = ({ authedUser, users }) => {
-  const authedUserId = authedUser ? authedUser.id : null;
-  if (authedUserId !== null) {
-    const user = users[authedUserId];
+  if (authedUser !== null) {
+    const user = users[authedUser];
     return {
       imageUrl: user.avatarURL,
       userName: user.name,
