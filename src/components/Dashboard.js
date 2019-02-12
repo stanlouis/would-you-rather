@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import Login from './Login';
-import QuestionList from './QuestionList';
+import QuestionList from './questions/QuestionList';
 
 class Dashboard extends Component {
   state = {

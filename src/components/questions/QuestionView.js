@@ -1,25 +1,23 @@
-import React, { Component, Fragment } from 'react';
-import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import React, {Fragment} from 'react';
+import {connect} from 'react-redux';
+import {Redirect} from 'react-router-dom';
 import AnsweredQuestion from './AnsweredQuestion';
 import UnansweredQuestion from './UnansweredQuestion';
 
-class QuestionView extends Component {
-  render() {
-    const { question, isAnswered, authedUser } = this.props;
+const QuestionView = props => {
+  const {question, isAnswered, authedUser} = props;
 
-    if (!authedUser) return <Redirect to="/" />;
-    return (
+  if (!authedUser) return <Redirect to="/"/>;
+  return (
       <Fragment>
         {isAnswered ? (
-          <AnsweredQuestion id={question.id} />
+            <AnsweredQuestion id={question.id}/>
         ) : (
-          <UnansweredQuestion id={question.id} />
+            <UnansweredQuestion id={question.id}/>
         )}
       </Fragment>
-    );
-  }
-}
+  );
+};
 
 const mapStateToProps = ({ questions, authedUser }, ownProps) => {
   const { id } = ownProps.match.params;

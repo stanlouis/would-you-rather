@@ -7,8 +7,8 @@ import './App.css';
 import LoadingBar from 'react-redux-loading';
 import Dashboard from './Dashboard';
 import PageNotFound from './PageNotFound';
-import QuestionView from './QuestionView';
-import AddQuestion from './AddQuestion';
+import QuestionView from './questions/QuestionView';
+import AddQuestion from './questions/AddQuestion';
 import Nav from './Nav';
 import Leaderboard from './Leaderboard';
 

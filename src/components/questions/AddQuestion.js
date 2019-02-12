@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import { handleAddQuestion } from '../actions/questions';
+import { handleAddQuestion } from '../../actions/questions';
 import { withRouter, Redirect } from 'react-router-dom';
 
 class AddQuestion extends Component {

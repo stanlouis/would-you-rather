@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { handleAnswer } from '../actions/questions';
+import { handleAnswer } from '../../actions/questions';
 
 const UnansweredQuestion = ({
   author,
