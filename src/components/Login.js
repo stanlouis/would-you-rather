@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { setAuthedUser } from '../actions/authedUser';
 
 class Login extends Component {
-
   handleUserLogin = id => {
     this.props.setAuthedUser(id);
   };
@@ -13,8 +12,16 @@ class Login extends Component {
     const { userData } = this.props;
     return (
       <div className="container my-5">
-        <h1 className="text-center">Login Page</h1>
-        <h4 className="text-center text-muted mt-3">Please login to play Would You Rather</h4>
+        <div className="text-center">
+          <h1>Login Page</h1>
+          <h4 className="text-muted mt-3">
+            Please login to play Would You Rather <br />
+          </h4>
+          <p className="text-muted">
+            <small>Click on your profile card to signin</small>
+          </p>
+        </div>
+
         <div className="d-flex">
           <div className="list-group mx-auto justify-content-center mt-5">
             {userData.map(user => (

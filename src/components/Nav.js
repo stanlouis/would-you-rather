@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-const Nav = ({ imageUrl, userName, userID, authedUser }) => {
+const Nav = ({ imageUrl, userName, userID, authedUser, userIsAuthed }) => {
   const handleLogout = () => {
     authedUser(null);
   };
@@ -15,7 +15,7 @@ const Nav = ({ imageUrl, userName, userID, authedUser }) => {
           </Link>
         </li>
 
-        {userID ? (
+        {userIsAuthed ? (
           <Fragment>
             <li className="nav-item">
               <Link to="/leaderboard" className="text-uppercase nav-link">
@@ -31,7 +31,7 @@ const Nav = ({ imageUrl, userName, userID, authedUser }) => {
           </Fragment>
         ) : null}
       </ul>
-      {userID ? (
+      {userIsAuthed ? (
         <Fragment>
           <div className="avatar text-white">
             Hello, <span className="text-slanted text-white">{userName}</span>
@@ -54,7 +54,19 @@ const Nav = ({ imageUrl, userName, userID, authedUser }) => {
             </li>
           </ul>
         </Fragment>
-      ) : null}
+      ) : (
+        <ul className="navbar-nav">
+          <li className="nav-item">
+            <Link
+              to="/"
+              className="text-uppercase nav-link"
+              onClick={handleLogout}
+            >
+              Login
+            </Link>
+          </li>
+        </ul>
+      )}
     </nav>
   );
 };
@@ -67,6 +79,7 @@ const mapStateToProps = ({ authedUser, users }) => {
       userName: user.name,
       userID: user.id,
       authedUser,
+      userIsAuthed: authedUser !== null ? true : false,
     };
   }
   return {

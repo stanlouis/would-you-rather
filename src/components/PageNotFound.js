@@ -1,9 +1,7 @@
-import React, {Fragment} from 'react'
-import {Link} from "react-router-dom";
+import React, { Fragment } from 'react';
 
 export default () => (
-    <Fragment>
-        <h1>Page Not Found</h1>
-        <Link to="/">Back to Home</Link>
-    </Fragment>
-)
+  <Fragment>
+    <h1 className="text-center my-5">Sorry this page does not exist</h1>
+  </Fragment>
+);
